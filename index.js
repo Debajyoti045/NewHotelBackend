@@ -7,6 +7,8 @@ const startServer = async () => {
   try {
     const port = process.env.PORT || 3000;
     await connectToMongo();
+    app.use("/api/v1/authUser", require("./routes/authUser"));
+    app.use("/api/v1/authAdmin", require("./routes/authAdmin"));
     app.get("*", (req, res) => {
       //console.log("Hi")
       res.status(404).json({ error: "NOT FOUND!" });
